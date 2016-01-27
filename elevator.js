@@ -37,14 +37,15 @@ function Elevator(args) {
 		text(mouseXDiv, 800, 300);
 		text(mouseYDiv, 800, 400);
 
-		// check if current mouse position is in control array
+		// check if current mouse position is in control array & not activated
 		// timer debounces switch
 		for (var i=0;i<(this.floorCallsUp.length -1);i++) {
 			if ( (this.floorCallsUp[i].checkTimer() === 'expired')
 			&& (this.floorCallsUp[i].xStart <= mouseXDiv)
 			&& (this.floorCallsUp[i].xEnd >= mouseXDiv)
 			&& (this.floorCallsUp[i].yStart <= mouseYDiv)
-			&& (this.floorCallsUp[i].yEnd >= mouseYDiv)) {
+			&& (this.floorCallsUp[i].yEnd >= mouseYDiv)
+			&& !(this.floorCallsUp[i].checkActive()) ) {
 				this.floorCallsUp[i].setTimer();
 				this.floorCallsUp[i].toggleActive();
 				console.log(this.floorCallsUp[i].description + i + " " + this.floorCallsUp[i].checkActive());
@@ -55,7 +56,8 @@ function Elevator(args) {
 			&& (this.floorCallsDown[i].xStart <= mouseXDiv)
 			&& (this.floorCallsDown[i].xEnd >= mouseXDiv)
 			&& (this.floorCallsDown[i].yStart <= mouseYDiv)
-			&& (this.floorCallsDown[i].yEnd >= mouseYDiv)) {
+			&& (this.floorCallsDown[i].yEnd >= mouseYDiv)
+			&& !(this.floorCallsDown[i].checkActive()) ) {
 				this.floorCallsDown[i].setTimer();
 				this.floorCallsDown[i].toggleActive();
 				console.log(this.floorCallsDown[i].description + i + " " + this.floorCallsDown[i].checkActive());
@@ -66,7 +68,8 @@ function Elevator(args) {
 			&& (this.cabRequests[i].xStart <= mouseXDiv)
 			&& (this.cabRequests[i].xEnd >= mouseXDiv)
 			&& (this.cabRequests[i].yStart <= mouseYDiv)
-			&& (this.cabRequests[i].yEnd >= mouseYDiv)) {
+			&& (this.cabRequests[i].yEnd >= mouseYDiv)
+			&& !(this.cabRequests[i].checkActive()) ) {
 				this.cabRequests[i].setTimer();
 				this.cabRequests[i].toggleActive();
 				console.log(this.cabRequests[i].description + i + " " + this.cabRequests[i].checkActive());
