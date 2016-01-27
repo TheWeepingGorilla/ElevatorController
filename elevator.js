@@ -38,39 +38,32 @@ function Elevator(args) {
 		text(mouseYDiv, 800, 400);
 
 		// check if current mouse position is in control array & not activated
-		// timer debounces switch
 		for (var i=0;i<(this.floorCallsUp.length -1);i++) {
-			if ( (this.floorCallsUp[i].checkTimer() === 'expired')
-			&& (this.floorCallsUp[i].xStart <= mouseXDiv)
+			if ( (this.floorCallsUp[i].xStart <= mouseXDiv)
 			&& (this.floorCallsUp[i].xEnd >= mouseXDiv)
 			&& (this.floorCallsUp[i].yStart <= mouseYDiv)
 			&& (this.floorCallsUp[i].yEnd >= mouseYDiv)
 			&& !(this.floorCallsUp[i].checkActive()) ) {
-				this.floorCallsUp[i].setTimer();
 				this.floorCallsUp[i].toggleActive();
 				console.log(this.floorCallsUp[i].description + i + " " + this.floorCallsUp[i].checkActive());
 			}
 		}
 		for (var i=1;i<this.floorCallsDown.length;i++) {
-			if ( (this.floorCallsDown[i].checkTimer() === 'expired')
-			&& (this.floorCallsDown[i].xStart <= mouseXDiv)
+			if ( (this.floorCallsDown[i].xStart <= mouseXDiv)
 			&& (this.floorCallsDown[i].xEnd >= mouseXDiv)
 			&& (this.floorCallsDown[i].yStart <= mouseYDiv)
 			&& (this.floorCallsDown[i].yEnd >= mouseYDiv)
 			&& !(this.floorCallsDown[i].checkActive()) ) {
-				this.floorCallsDown[i].setTimer();
 				this.floorCallsDown[i].toggleActive();
 				console.log(this.floorCallsDown[i].description + i + " " + this.floorCallsDown[i].checkActive());
 			}
 		}
 		for (var i=0;i<this.cabRequests.length;i++) {
-			if ( (this.cabRequests[i].checkTimer() === 'expired')
-			&& (this.cabRequests[i].xStart <= mouseXDiv)
+			if ( (this.cabRequests[i].xStart <= mouseXDiv)
 			&& (this.cabRequests[i].xEnd >= mouseXDiv)
 			&& (this.cabRequests[i].yStart <= mouseYDiv)
 			&& (this.cabRequests[i].yEnd >= mouseYDiv)
 			&& !(this.cabRequests[i].checkActive()) ) {
-				this.cabRequests[i].setTimer();
 				this.cabRequests[i].toggleActive();
 				console.log(this.cabRequests[i].description + i + " " + this.cabRequests[i].checkActive());
 			}
@@ -308,16 +301,6 @@ function Thing(args) {
 	this.setActive = function(value) {
 		this.active = value;
 	}
-	this.setTimer = function() {
-		this.timer = millis() + 500;
-	}
-	this.checkTimer = function() {
-		if (this.timer <= millis()) {
-			return 'expired';
-		} else {
-			return 'active';
-		}
-	};
 }
 
 function Label(args) {
